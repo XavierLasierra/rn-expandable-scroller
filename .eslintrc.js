@@ -1,16 +1,52 @@
 module.exports = {
   root: true,
-  extends: '@react-native-community',
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
-  overrides: [
-    {
-      files: ['*.ts', '*.tsx'],
-      rules: {
-        '@typescript-eslint/no-shadow': ['error'],
-        'no-shadow': 'off',
-        'no-undef': 'off',
-      },
-    },
+  parser: "@typescript-eslint/parser",
+  plugins: ["react-native", "prettier"],
+  extends: [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-native/all",
+  ],
+  parserOptions: {
+    ecmaVersion: 2019,
+    sourceType: "module",
+  },
+  rules: {
+    "no-multi-spaces": ["error"],
+    "no-nested-ternary": ["error"],
+    "no-multiple-empty-lines": ["error", { max: 1 }],
+    "object-curly-spacing": [
+      "error",
+      "always",
+      { arraysInObjects: true, objectsInObjects: true },
+    ],
+    "no-use-before-define": ["off"],
+
+    "no-console": ["error", { allow: ["warn", "error"] }],
+    "@typescript-eslint/no-use-before-define": ["off"],
+    "@typescript-eslint/no-var-requires": ["warn"],
+    "@typescript-eslint/no-empty-function": ["warn"],
+    "@typescript-eslint/no-empty-interface": ["warn"],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "react-native/no-inline-styles": ["error"],
+    "react-native/no-raw-text": ["warn"],
+    "react-native/split-platform-components": ["warn"],
+    "react-native/sort-styles": ["warn", "asc"],
+    "react-native/no-color-literals": ["warn"],
+    "react-native/no-unused-styles": ["warn"],
+    "comma-dangle": ["error", "always-multiline"],
+    quotes: ["error", "double", { allowTemplateLiterals: true }],
+    "react-native/no-raw-text": "off",
+  },
+  env: {
+    es6: true,
+    jest: true,
+  },
+  ignorePatterns: [
+    "**/android/**",
+    "**/ios/**",
+    "**/.jest/**",
+    "**/node_modules/**",
+    "**/dist/**",
   ],
 };
