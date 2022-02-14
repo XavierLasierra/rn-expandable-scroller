@@ -1,114 +1,94 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
+import React from "react";
+import { SafeAreaView, StyleSheet } from "react-native";
+import { ExpandableItemElement } from "./src/components/expandableItem/ExpandableItem";
+import { ExpandableScroll } from "./src/components/expandableScroll/ExpandableScroll";
 
-import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section: React.FC<{
-  title: string;
-}> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+const elements: ExpandableItemElement[] = [
+  {
+    imageUrl:
+      "https://images.unsplash.com/photo-1526512340740-9217d0159da9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=80",
+    title: "Mountain",
+    subtitle: "The big mountain",
+  },
+  {
+    imageUrl:
+      "https://images.pexels.com/photos/8117889/pexels-photo-8117889.jpeg?cs=srgb&dl=pexels-kira-schwarz-8117889.jpg&fm=jpg",
+    title: "Plant",
+    subtitle: "what a Plant",
+  },
+  {
+    imageUrl:
+      "https://images.pexels.com/photos/8471721/pexels-photo-8471721.jpeg?cs=srgb&dl=pexels-cup-of-couple-8471721.jpg&fm=jpg",
+    title: "what is this",
+    subtitle: "milk",
+  },
+  {
+    imageUrl:
+      "https://images.unsplash.com/photo-1526512340740-9217d0159da9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=80",
+    title: "Mountain",
+    subtitle: "The big mountain",
+  },
+  {
+    imageUrl:
+      "https://images.pexels.com/photos/8117889/pexels-photo-8117889.jpeg?cs=srgb&dl=pexels-kira-schwarz-8117889.jpg&fm=jpg",
+    title: "Plant",
+    subtitle: "what a Plant",
+  },
+  {
+    imageUrl:
+      "https://images.pexels.com/photos/8471721/pexels-photo-8471721.jpeg?cs=srgb&dl=pexels-cup-of-couple-8471721.jpg&fm=jpg",
+    title: "what is this",
+    subtitle: "milk",
+  },
+  {
+    imageUrl:
+      "https://images.unsplash.com/photo-1526512340740-9217d0159da9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=80",
+    title: "Mountain",
+    subtitle: "The big mountain",
+  },
+  {
+    imageUrl:
+      "https://images.pexels.com/photos/8117889/pexels-photo-8117889.jpeg?cs=srgb&dl=pexels-kira-schwarz-8117889.jpg&fm=jpg",
+    title: "Plant",
+    subtitle: "what a Plant",
+  },
+  {
+    imageUrl:
+      "https://images.pexels.com/photos/8471721/pexels-photo-8471721.jpeg?cs=srgb&dl=pexels-cup-of-couple-8471721.jpg&fm=jpg",
+    title: "what is this",
+    subtitle: "milk",
+  },
+  {
+    imageUrl:
+      "https://images.unsplash.com/photo-1526512340740-9217d0159da9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=80",
+    title: "Mountain",
+    subtitle: "The big mountain",
+  },
+  {
+    imageUrl:
+      "https://images.pexels.com/photos/8117889/pexels-photo-8117889.jpeg?cs=srgb&dl=pexels-kira-schwarz-8117889.jpg&fm=jpg",
+    title: "Plant",
+    subtitle: "what a Plant",
+  },
+  {
+    imageUrl:
+      "https://images.pexels.com/photos/8471721/pexels-photo-8471721.jpeg?cs=srgb&dl=pexels-cup-of-couple-8471721.jpg&fm=jpg",
+    title: "what is this",
+    subtitle: "milk",
+  },
+];
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+    <SafeAreaView style={styles.screen}>
+      <ExpandableScroll elements={elements} />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  screen: {
+    flex: 1,
   },
 });
 
