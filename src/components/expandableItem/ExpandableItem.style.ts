@@ -1,16 +1,14 @@
 import { StyleSheet } from "react-native";
+import { Colors, Fonts, Metrics } from "../../theme";
 
 export default StyleSheet.create({
-  container: {
-    width: "100%",
-  },
   image: {
     flex: 1,
   },
   subtitle: {
-    color: "white",
-    fontSize: 20,
-    fontWeight: "500",
+    color: Colors.primary,
+    fontSize: Fonts.size.h2,
+    fontWeight: Fonts.weight.normal,
   },
   textContainer: {
     alignItems: "center",
@@ -20,9 +18,9 @@ export default StyleSheet.create({
     right: 0,
   },
   title: {
-    color: "white",
-    fontSize: 25,
-    fontWeight: "700",
-    paddingVertical: 10,
+    color: Colors.primary,
+    fontSize: Fonts.size.h1,
+    fontWeight: Fonts.weight.bold,
+    paddingVertical: Metrics.baseSpace,
   },
 });

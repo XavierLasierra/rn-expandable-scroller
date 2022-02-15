@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable } from "react-native";
+import { Pressable, StyleProp, TextStyle, ViewStyle } from "react-native";
 import FastImage, { Source } from "react-native-fast-image";
 import Animated, {
   Extrapolate,
@@ -17,24 +17,30 @@ export interface ExpandableItemElement {
   subtitle?: string;
 }
 
-export type ExpandableItemProps = ExpandableItemElement & {
+export interface ExpandableItemProps {
+  element: ExpandableItemElement;
   position: number;
   yPosition: SharedValue<number>;
   openHeight: number;
   closeHeight: number;
-};
+  titleStyle?: StyleProp<TextStyle>;
+  subtitleStyle?: StyleProp<TextStyle>;
+  textContainerStyle?: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
+}
 
 const ExpandableItem = ({
-  imageUrl,
-  imageSource,
-  title,
-  subtitle,
+  element: { imageUrl, imageSource, title, subtitle },
   position,
   yPosition,
   openHeight,
   closeHeight,
+  titleStyle,
+  subtitleStyle,
+  textContainerStyle,
+  containerStyle,
 }: ExpandableItemProps) => {
-  const containerStyle = useAnimatedStyle(() => ({
+  const animatedContainerStyle = useAnimatedStyle(() => ({
     height: interpolate(
       yPosition.value,
       [(position - 1) * openHeight, position * openHeight],
@@ -43,7 +49,7 @@ const ExpandableItem = ({
     ),
   }));
 
-  const textContainerStyle = useAnimatedStyle(() => ({
+  const animatedTextContainerStyle = useAnimatedStyle(() => ({
     height: interpolate(
       yPosition.value,
       [(position - 1) * openHeight, position * openHeight],
@@ -52,7 +58,7 @@ const ExpandableItem = ({
     ),
   }));
 
-  const titleStyle = useAnimatedStyle(() => ({
+  const animatedTitleStyle = useAnimatedStyle(() => ({
     fontSize: interpolate(
       yPosition.value,
       [(position - 1) * openHeight, position * openHeight],
@@ -61,7 +67,7 @@ const ExpandableItem = ({
     ),
   }));
 
-  const subtitleStyle = useAnimatedStyle(() => ({
+  const animatedSubtitleStyle = useAnimatedStyle(() => ({
     opacity: interpolate(
       yPosition.value,
       [(position - 1) * openHeight, position * openHeight],
@@ -80,13 +86,19 @@ const ExpandableItem = ({
 
   return (
     <Pressable>
-      <Animated.View style={[styles.container, containerStyle]}>
+      <Animated.View style={[containerStyle, animatedContainerStyle]}>
         {renderImage()}
-        <Animated.View style={[styles.textContainer, textContainerStyle]}>
-          <Animated.Text style={[styles.title, titleStyle]}>
-            {title?.toUpperCase()}
+        <Animated.View
+          style={[
+            styles.textContainer,
+            textContainerStyle,
+            animatedTextContainerStyle,
+          ]}>
+          <Animated.Text style={[styles.title, titleStyle, animatedTitleStyle]}>
+            {title}
           </Animated.Text>
-          <Animated.Text style={[styles.subtitle, subtitleStyle]}>
+          <Animated.Text
+            style={[styles.subtitle, subtitleStyle, animatedSubtitleStyle]}>
             {subtitle}
           </Animated.Text>
         </Animated.View>
